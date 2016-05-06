@@ -64,8 +64,7 @@
 (defun desk-load-0 (path)
   "Load a desktop in the deskel enviroment."
   (desk-env (lambda () 
-    (desktop-read path))))
-
+              (desktop-read path))))
 
 (defun desk-load-1 (path)
   "Interactive wrapper for `desk-load'."

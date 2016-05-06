@@ -28,9 +28,9 @@
   (desk-remove-all-files)
   (find-file "test/a.txt")
   (find-file "b.txt")
-  (desk-save-as-0 "ab")
+  (desk-save-as-0 "ab1")
   (desk-remove-all-files)
-  (desk-load-0 "test/ab")
+  (desk-load-0 "test/ab1")
   (should (equal
            (mapcar 'buffer-name (desk-files-in-buffer-list))
            '("b.txt" "a.txt"))))
@@ -40,5 +40,14 @@
   (desk-remove-all-files)
   (should (equal (desk-files-in-buffer-list) nil)))
 
-
-
+    
+(ert-deftest desk-delete-dir-test ()
+  "Test to delete a desktop dir."
+  (desk-delete-dir "test/ab2")
+  (desk-remove-all-files)
+  (find-file "test/a.txt")
+  (find-file "b.txt")
+  (desk-save-as-0 "ab2")
+  (should (file-exists-p "ab2"))
+  (desk-delete-dir "ab2")
+  (should (not (file-exists-p "test/ab2"))))
