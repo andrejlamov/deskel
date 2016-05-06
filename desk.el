@@ -1,5 +1,5 @@
 (defun desk-init () 
-  (setq desk-home-dir "~/.deskel")
+  (setq desk-home-dir "~/.deskel/")
   (desk-make-dir desk-home-dir)
   (setq desk-current nil))
 
