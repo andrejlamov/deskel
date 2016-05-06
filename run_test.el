@@ -7,7 +7,6 @@
       (ert-stats-completed-unexpected (ert-run-tests-interactively t)))
  
 (switch-to-buffer "*ert*")
-(rename-buffer "*ert*")
 (set-visited-file-name "*ert*")
 (save-buffer)
 
