@@ -1,7 +1,8 @@
 (defun desk-init () 
   (setq desk-home-dir "~/.deskel/")
   (desk-make-dir desk-home-dir)
-  (setq desk-current nil))
+  (setq desk-current nil)
+  (add-to-list 'after-save-hook 'desk-save))
 
 (defun desk-test-mode ()
   "A tdd mode for developing deskel."
@@ -100,7 +101,8 @@
 
 (defun desk-save ()
   (interactive)
-  (desk-save-as-0 desk-current))
+  (if (not (equal desk-current nil))
+      (desk-save-as-0 desk-current)))
 
 (desk-init)
 
