@@ -1,5 +1,3 @@
-(require 'ert)
-
 (setq desktop-clear-preserve-buffers
       (cons "\\*ert\\*" desktop-clear-preserve-buffers)) 
 (setq backup-inhibited t)
