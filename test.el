@@ -24,7 +24,7 @@
 
 (ert-deftest save-as-and-load-desktop-test ()
   "Test to save and then load a desktop."
-  (desk-delete-dir "test/a")
+  (desk-delete-dir "a")
   (desk-remove-all-files)
   (find-file "test/a.txt")
   (find-file "b.txt")

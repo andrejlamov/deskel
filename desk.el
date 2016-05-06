@@ -1,3 +1,7 @@
+(defun desk-init () 
+  (setq desk-home-dir "~/.deskel")
+  (desk-make-dir desk-home-dir))
+
 (defun desk-delete-dir (path)
   "Delete directory."
   (if (file-exists-p path)
@@ -46,6 +50,16 @@
               (desk-make-dir path)
               (desktop-save path))))
 
+(defun desk-save-as-1 (path)
+  "Interactive wrapper for `desk-save-as-0'."
+  (interactive "f")
+  (desk-save-as-0 path))
+
+(defun desk-save-as ()
+  "Save desktop in desk-home-dir."
+  (interactive)
+  (let ((default-directory desk-home-dir))
+    (call-interactively 'desk-save-as-1)))
 
 (defun desk-load-0 (path)
   "Load a desktop in the deskel enviroment."
@@ -53,15 +67,16 @@
     (desktop-read path))))
 
 
-(defun desk-load (path)
+(defun desk-load-1 (path)
   "Interactive wrapper for `desk-load'."
   (interactive "f")
   (desk-load-0 path))
 
-(defun desk-save-as (path)
-  "Interactive wrapper for `desk-save-as'."
-  (interactive "f")
-  (desk-save-as-0 path))
+(defun desk-load ()
+  "Load desktop from desk-home-dir."
+  (interactive)
+  (let ((default-directory desk-home-dir))
+    (call-interactively 'desk-load-1)))
 
-
+(desk-init)
 
