@@ -51,3 +51,25 @@
   (should (file-exists-p "ab2"))
   (desk-delete-dir "ab2")
   (should (not (file-exists-p "test/ab2"))))
+
+
+(ert-deftest desk-load-and-unload ()
+  "Test to load and unload."
+  (desk-delete-dir "test/a")
+  (desk-remove-all-files)
+  (find-file "test/a.txt")
+  (find-file "b.txt")
+  (desk-save-as-0 "ab1")
+  (desk-load-0 "ab1")
+
+  (should (equal desk-current "ab1"))
+  (should (equal
+           (mapcar 'buffer-name (desk-files-in-buffer-list))
+           '("b.txt" "a.txt")))
+
+  (desk-unload)
+
+  (should (equal desk-current nil))
+  (should (equal
+           (mapcar 'buffer-name (desk-files-in-buffer-list))
+           nil)))

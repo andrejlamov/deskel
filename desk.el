@@ -1,6 +1,7 @@
 (defun desk-init () 
   (setq desk-home-dir "~/.deskel")
-  (desk-make-dir desk-home-dir))
+  (desk-make-dir desk-home-dir)
+  (setq desk-current nil))
 
 (defun desk-delete-dir (path)
   "Delete directory."
@@ -64,7 +65,8 @@
 (defun desk-load-0 (path)
   "Load a desktop in the deskel enviroment."
   (desk-env (lambda () 
-              (desktop-read path))))
+              (desktop-read path)))
+  (setq desk-current path))
 
 (defun desk-load-1 (path)
   "Interactive wrapper for `desk-load'."
@@ -76,6 +78,13 @@
   (interactive)
   (let ((default-directory desk-home-dir))
     (call-interactively 'desk-load-1)))
+
+(defun desk-unload ()
+  (if (not (equal desk-current nil))
+      (progn (setq desk-current nil)
+             (desk-remove-all-files))))
+
+
 
 (desk-init)
 
