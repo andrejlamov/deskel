@@ -98,6 +98,9 @@
              (desk-remove-all-files))))
 
 
+(defun desk-save ()
+  (interactive)
+  (desk-save-as-0 desk-current))
 
 (desk-init)
 
