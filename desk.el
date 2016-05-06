@@ -3,6 +3,19 @@
   (desk-make-dir desk-home-dir)
   (setq desk-current nil))
 
+(defun desk-test-mode ()
+  "A tdd mode for developing deskel."
+  (interactive)
+  (let ((current-buffer (current-buffer)))
+    (tdd-mode)
+    (compile "make")
+    (delete-window)
+    (find-file "*ert*")
+    (auto-revert-mode)
+    (split-window)
+    (switch-to-buffer current-buffer)))
+
+
 (defun desk-delete-dir (path)
   "Delete directory."
   (if (file-exists-p path)

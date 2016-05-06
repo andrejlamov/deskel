@@ -1,18 +1,5 @@
 (load-file "desk.el")
 
-(defun desk-test-mode ()
-  "A tdd mode for developing deskel."
-  (interactive)
-  (let ((current-buffer (current-buffer)))
-    (tdd-mode)
-    (compile "make")
-    (delete-window)
-    (find-file "*ert*")
-    (auto-revert-mode)
-    (split-window)
-    (switch-to-buffer current-buffer)))
-
-
 (ert-deftest desk-remove-buffer-test ()
   "Test to remove a buffer."
   (let ((prev-buffer-list (buffer-list)))
