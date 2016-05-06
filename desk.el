@@ -55,15 +55,18 @@
 
 (defun desk-remove-all-files ()
   "Clear all dekstops."
+  (interactive)
   (desk-env (lambda ()
-              (desktop-clear))))
+              (desktop-clear)))
+  (setq desk-current nil))
 
 
 (defun desk-save-as-0 (path)
   "Save a desktop in the deskel enviroment."
   (desk-env (lambda () 
               (desk-make-dir path)
-              (desktop-save path))))
+              (desktop-save path)
+              (setq desk-current path))))
 
 (defun desk-save-as-1 (path)
   "Interactive wrapper for `desk-save-as-0'."
@@ -94,6 +97,7 @@
     (call-interactively 'desk-load-1)))
 
 (defun desk-unload ()
+  (interactive)
   (if (not (equal desk-current nil))
       (progn (setq desk-current nil)
              (desk-remove-all-files))))
