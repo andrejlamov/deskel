@@ -28,8 +28,8 @@
       (make-directory path)))
 
 
-(defun desk-remove-buffer (buffer-name)
-  "Remove a buffer without prompting."
+(defun desk-close-buffer (buffer-name)
+  "Close a buffer without prompting."
   (switch-to-buffer buffer-name)
   (set-buffer-modified-p nil) ; skip prompt
   (kill-buffer buffer-name))
@@ -53,7 +53,7 @@
             ((symbol-function 'yes-or-no-p) (lambda (a) t)))
     (funcall body)))
 
-(defun desk-remove-all-files ()
+(defun desk-close-all-files ()
   "Clear all dekstops."
   (interactive)
   (desk-env (lambda ()
@@ -99,7 +99,7 @@
   (interactive)
   (if (not (equal desk-current nil))
       (progn (setq desk-current nil)
-             (desk-remove-all-files))))
+             (desk-close-all-files))))
 
 
 (defun desk-save ()
