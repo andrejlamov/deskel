@@ -107,19 +107,22 @@
   "Load desktop from desk-home-dir."
   (interactive)
   (let ((default-directory desk-home-dir))
-    (call-interactively 'desk-load-1)))
+    (call-interactively 'desk-load-1))
+  (with-temp-message (format "Desk loaded. Current desk is %s" desk-current)))
 
 (defun desk-unload ()
   (interactive)
   (if (not (equal desk-current nil))
       (progn (setq desk-current nil)
-             (desk-close-all-files))))
+             (desk-close-all-files)))
+  (with-temp-message (format "Desk unloaded. Current desk is %s" desk-current)))
+
 
 (defun desk-delete-desk ()
   (interactive)
   (desk-close-all-files)
   (desk-save))
-  
+
 
 (defun desk-remove-file ()
   (interactive)
@@ -129,7 +132,9 @@
 (defun desk-save ()
   (interactive)
   (if (not (equal desk-current nil))
-      (desk-save-as-0 desk-current)))
+      (progn
+        (desk-save-as-0 desk-current)
+        (with-temp-message (format "Saved desk %s" desk-current)))))
 
 
 (defun desk-new ()
