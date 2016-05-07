@@ -2,7 +2,18 @@
   (setq desk-home-dir "~/.deskel/")
   (desk-make-dir desk-home-dir)
   (setq desk-current nil)
-  (add-to-list 'after-save-hook 'desk-save))
+  (add-to-list 'after-save-hook 'desk-save)
+  (desk-map-keys))
+
+
+(defun desk-map-keys ()
+  (define-prefix-command 'desk-map)
+  (global-set-key (kbd "C-t") 'desk-map)
+  (define-key desk-map (kbd "n") 'desk-new)
+  (define-key desk-map (kbd "s") 'desk-save)
+  (define-key desk-map (kbd "l") 'desk-load)
+  (define-key desk-map (kbd "r") 'desk-remove-file))
+
 
 (defun desk-test-mode ()
   "A tdd mode for developing deskel."
