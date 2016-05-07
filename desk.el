@@ -13,7 +13,9 @@
   (define-key desk-map (kbd "n") 'desk-new)
   (define-key desk-map (kbd "s") 'desk-save)
   (define-key desk-map (kbd "l") 'desk-load)
-  (define-key desk-map (kbd "r") 'desk-remove-file))
+  (define-key desk-map (kbd "u") 'desk-unload)
+  (define-key desk-map (kbd "r") 'desk-remove-file)
+  (define-key desk-map (kbd "c") 'desk-close-all-file))
 
 
 (defun desk-test-mode ()
