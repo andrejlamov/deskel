@@ -31,6 +31,7 @@
     
 (ert-deftest desk-delete-dir-test ()
   "Test to delete a desktop dir."
+  
   (desk-delete-dir "test/ab2")
   (desk-close-all-files)
   (find-file "test/a.txt")
@@ -41,7 +42,7 @@
   (should (not (file-exists-p "test/ab2"))))
 
 
-(ert-deftest desk-load-and-unload ()
+(ert-deftest desk-load-and-unload-desk ()
   "Test to load and unload."
   (desk-delete-dir "test/ab1")
   (desk-close-all-files)
@@ -83,9 +84,10 @@
   (desk-delete-desk)
 
   (desk-unload)
-  (desk-load-0 "test/ab1")
   
   (should (equal
            (mapcar 'buffer-name (desk-files-in-buffer-list))
            nil))
-  (should (equal desk-current "test/ab1")))
+
+  (should (not (file-exists-p "test/ab1"))))
+
