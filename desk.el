@@ -111,6 +111,7 @@
   (with-temp-message (format "Desk loaded. Current desk is %s" desk-current)))
 
 (defun desk-unload ()
+  "Unload desktop and restart clean."
   (interactive)
   (if (not (equal desk-current nil))
       (progn (setq desk-current nil)
@@ -129,11 +130,13 @@
 
 
 (defun desk-remove-file ()
+  "Remove a file from current desk."
   (interactive)
   (desk-close-buffer (current-buffer))
   (desk-save))
 
 (defun desk-save ()
+  "Save current desk."
   (interactive)
   (if (not (equal desk-current nil))
       (progn
@@ -142,12 +145,14 @@
 
 
 (defun desk-new ()
+  "Create a new empty desk."
   (interactive)
   (desk-close-all-files)
   (call-interactively 'desk-save-as))
 
 
 (defun desk-show-desk ()
+  "Show current desk."
   (interactive)
   (message "Current desktop: %s" desk-current))
 
