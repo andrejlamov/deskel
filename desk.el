@@ -101,6 +101,11 @@
       (progn (setq desk-current nil)
              (desk-close-all-files))))
 
+(defun desk-delete-desk ()
+  (interactive)
+  (desk-close-all-files)
+  (desk-save))
+  
 
 (defun desk-save ()
   (interactive)

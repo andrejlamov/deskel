@@ -68,3 +68,24 @@
   (desk-close-all-files))
 
 
+(ert-deftest desk-delete-desk-test ()
+  (desk-delete-dir "test/ab1")
+  (desk-close-all-files)
+  (find-file "test/a.txt")
+  (find-file "b.txt")
+  (desk-save-as-0 "ab1")
+  (desk-close-all-files)
+  (desk-load-0 "test/ab1")
+  (should (equal
+           (mapcar 'buffer-name (desk-files-in-buffer-list))
+           '("b.txt" "a.txt")))
+
+  (desk-delete-desk)
+
+  (desk-unload)
+  (desk-load-0 "test/ab1")
+  
+  (should (equal
+           (mapcar 'buffer-name (desk-files-in-buffer-list))
+           nil))
+  (should (equal desk-current "test/ab1")))
