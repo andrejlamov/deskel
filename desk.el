@@ -119,9 +119,13 @@
 
 
 (defun desk-delete-desk ()
+  "Delete current desk."
   (interactive)
-  (desk-close-all-files)
-  (desk-save))
+  (if (not (equal desk-current nil))
+      (let ((desk desk-current))
+        (desk-unload)
+        (desk-delete-dir desk))))
+
 
 
 (defun desk-remove-file ()
