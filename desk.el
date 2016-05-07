@@ -107,10 +107,26 @@
   (desk-save))
   
 
+(defun desk-remove-file ()
+  (interactive)
+  (desk-close-buffer (current-buffer))
+  (desk-save))
+
 (defun desk-save ()
   (interactive)
   (if (not (equal desk-current nil))
       (desk-save-as-0 desk-current)))
+
+
+(defun desk-new ()
+  (interactive)
+  (desk-close-all-files)
+  (call-interactively 'desk-save-as))
+
+
+(defun desk-show-desk ()
+  (interactive)
+  (message "Current desktop: %s" desk-current))
 
 (desk-init)
 
