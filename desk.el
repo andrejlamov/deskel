@@ -57,8 +57,7 @@
   "Clear all dekstops."
   (interactive)
   (desk-env (lambda ()
-              (desktop-clear)))
-  (setq desk-current nil))
+              (desktop-clear))))
 
 
 (defun desk-save-as-0 (path)
