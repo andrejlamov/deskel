@@ -64,7 +64,10 @@
 (defun desk-env (body)
   "Execute in the deskel enviroment. Should be a macro?"
   (cl-letf (((symbol-function 'y-or-n-p)    (lambda (a) t))
-            ((symbol-function 'yes-or-no-p) (lambda (a) t)))
+            ((symbol-function 'yes-or-no-p) (lambda (a) t))
+            ((symbol-function 'desktop-save-buffer-p)
+             ;; Try to save as much as possible
+             (lambda (filename bufname mode &rest _dummy) t)))
     (funcall body)))
 
 (defun desk-close-all-files ()
