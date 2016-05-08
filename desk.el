@@ -34,15 +34,17 @@
     (switch-to-buffer current-buffer)))
 
 
-(defun desk-delete-dir (path)
+(defun desk-delete-dir (p)
   "Delete directory."
-  (if (file-exists-p path)
-      (delete-directory path t)))
+  (let ((path (expand-file-name p)))
+    (if (file-exists-p path)
+        (delete-directory path t))))
 
-(defun desk-make-dir (path)
+(defun desk-make-dir (p)
   "Create directory."
-  (if (not (file-exists-p path))
-      (make-directory path)))
+  (let ((path (expand-file-name p)))
+    (if (not (file-exists-p p))
+        (make-directory p))))
 
 
 (defun desk-close-buffer (buffer-name)
@@ -80,12 +82,13 @@
               (desktop-clear))))
 
 
-(defun desk-save-as-0 (path)
+(defun desk-save-as-0 (p)
   "Save a desktop in the deskel enviroment."
-  (desk-env (lambda () 
-              (desk-make-dir path)
-              (desktop-save path)
-              (setq desk-current path))))
+  (let ((path (expand-file-name p)))
+    (desk-env (lambda () 
+                (desk-make-dir path)
+                (desktop-save path)
+                (setq desk-current path)))))
 
 (defun desk-save-as-1 (path)
   "Interactive wrapper for `desk-save-as-0'."
@@ -98,11 +101,12 @@
   (let ((default-directory desk-home-dir))
     (call-interactively 'desk-save-as-1)))
 
-(defun desk-load-0 (path)
+(defun desk-load-0 (p)
   "Load a desktop in the deskel enviroment."
-  (desk-env (lambda () 
-              (desktop-read path)))
-  (setq desk-current path))
+  (let ((path (expand-file-name p)))
+    (desk-env (lambda () 
+                (desktop-read path)))
+    (setq desk-current path)))
 
 (defun desk-load-1 (path)
   "Interactive wrapper for `desk-load'."

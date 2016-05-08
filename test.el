@@ -12,13 +12,13 @@
 
 (ert-deftest save-as-and-load-desktop-test ()
   "Test to save and then load a desktop."
-  (desk-delete-dir "ab1")
+  (desk-delete-dir "test/ab1")
   (desk-close-all-files)
   (find-file "test/a.txt")
   (find-file "b.txt")
-  (desk-save-as-0 "ab1")
-  (desk-close-all-files)
-  (desk-load-0 "test/ab1")
+  (desk-save-as-0 (expand-file-name "ab1"))
+  (desk-unload)
+  (desk-load-0 (expand-file-name "test/ab1"))
   (should (equal
            (mapcar 'buffer-name (desk-files-in-buffer-list))
            '("b.txt" "a.txt"))))
@@ -46,15 +46,16 @@
   "Test to load and unload."
   (desk-delete-dir "test/ab1")
   (desk-close-all-files)
+
   (find-file "test/a.txt")
   (find-file "b.txt")
   (desk-save-as-0 "ab1")
 
-  (desk-close-all-files)
+  (desk-unload)
 
   (desk-load-0 "test/ab1")
   
-  (should (equal desk-current "test/ab1"))
+  (should (equal desk-current (expand-file-name "test/ab1")))
 
   (should (equal
            (mapcar 'buffer-name (desk-files-in-buffer-list))
@@ -75,7 +76,7 @@
   (find-file "test/a.txt")
   (find-file "b.txt")
   (desk-save-as-0 "ab1")
-  (desk-close-all-files)
+  (desk-unload)
   (desk-load-0 "test/ab1")
   (should (equal
            (mapcar 'buffer-name (desk-files-in-buffer-list))
