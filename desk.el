@@ -3,7 +3,7 @@
   (desk-make-dir desk-home-dir)
   (setq desk-current nil)
   (add-to-list 'after-save-hook 'desk-save)
-  (add-to-list 'window-configuration-change-hook 'desk-save)
+;;  (add-to-list 'window-configuration-change-hook 'desk-save)
   (desk-map-keys))
 
 
