@@ -3,7 +3,7 @@
   (desk-make-dir desk-home-dir)
   (setq desk-current nil)
   (add-to-list 'after-save-hook 'desk-save)
-;;  (add-to-list 'window-configuration-change-hook 'desk-save)
+  (add-to-list 'window-configuration-change-hook 'desk-save)
   (desk-map-keys))
 
 
@@ -112,6 +112,7 @@
 (defun desk-load ()
   "Load desktop from desk-home-dir."
   (interactive)
+  (setq desk-current nil)
   (let ((default-directory desk-home-dir))
     (call-interactively 'desk-load-1))
   (with-temp-message (format "Desk loaded. Current desk is %s" desk-current)))
@@ -119,9 +120,8 @@
 (defun desk-unload ()
   "Unload desktop and restart clean."
   (interactive)
-  (if (not (equal desk-current nil))
-      (progn (setq desk-current nil)
-             (desk-close-all-files)))
+  (setq desk-current nil)
+  (desk-close-all-files)
   (with-temp-message (format "Desk unloaded. Current desk is %s" desk-current)))
 
 
