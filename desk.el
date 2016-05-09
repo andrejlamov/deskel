@@ -20,7 +20,7 @@
   (define-key desk-map (kbd "l") 'desk-load)
   (define-key desk-map (kbd "u") 'desk-unload)
   (define-key desk-map (kbd "r") 'desk-remove-file)
-  (define-key desk-map (kbd "c") 'desk-close-all-file)
+  (define-key desk-map (kbd "c") 'desk-close-all-files)
   (define-key desk-map (kbd "v") 'desk-show-desk)
   (define-key desk-map (kbd "d") 'desk-delete-desk))
 
