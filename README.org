@@ -4,7 +4,7 @@
 
 My multiplexer for emacs desktops.
 
-Used together with helm and its ~helm-ff-auto-update-initial-value~.
+Used together with helm and its ~helm-ff-update-when-only-one-matched~.
 
 * Keys
 

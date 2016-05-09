@@ -133,7 +133,6 @@
   (interactive)
   (setq desk-current nil)
   (let ((default-directory desk-home-dir)
-        (helm-ff-auto-update-initial-value t)
         (desk-in-desk-load t))
     (call-interactively 'desk-load-1))
   (with-temp-message (format "Desk loaded. Current desk is %s" desk-current)))
