@@ -109,6 +109,7 @@
   "Load a desktop in the deskel enviroment."
   (let ((path (expand-file-name p)))
     (desk-env (lambda () 
+                (desk-unload)
                 (desktop-read path)))
     (setq desk-current path)))
 
