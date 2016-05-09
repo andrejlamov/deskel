@@ -1,0 +1,21 @@
+#+author: Andrej Lamov
+
+* Deskel
+
+My multiplexer for emacs desktops.
+
+Used together with helm and its ~helm-ff-auto-update-initial-value~.
+
+* Keys
+
+~C-t~ and then
+
+| ~n~ | Create a new fresh desktop         |
+| ~s~ | Save current desktop               |
+| ~a~ | Save current desktop with a name   |
+| ~l~ | Load a desktop                     |
+| ~u~ | Unload current desktop             |
+| ~r~ | Remove file from current desktop   |
+| ~c~ | Close all files in current desktop |
+| ~d~ | Delete file from current desktop   |
+| ~v~ | Show name of current desktop       |
