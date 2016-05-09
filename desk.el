@@ -4,7 +4,10 @@
   (setq desk-current nil)
   (add-to-list 'after-save-hook 'desk-save)
   (add-to-list 'window-configuration-change-hook 'desk-save)
-  (desk-map-keys))
+  (desk-map-keys)
+  (advice-add 'helm-ff-update-when-only-one-matched
+            :after
+            #'desk-load-auto-select))
 
 
 (defun desk-map-keys ()
@@ -113,13 +116,26 @@
   (interactive "f")
   (desk-load-0 path))
 
+
+(defun desk-load-auto-select ()
+  (if (boundp 'desk-in-desk-load)
+      (if (and
+           (not (equal helm-pattern (expand-file-name desk-home-dir)))
+           (file-exists-p (helm-get-selection)))
+          (progn
+            (let ((helm--reading-passwd-or-string t)) 
+              (helm-confirm-and-exit-minibuffer))))))
+
+
 (defun desk-load ()
   "Load desktop from desk-home-dir."
   (interactive)
   (setq desk-current nil)
-  (let ((default-directory desk-home-dir))
+  (let ((default-directory desk-home-dir)
+        (desk-in-desk-load t))
     (call-interactively 'desk-load-1))
   (with-temp-message (format "Desk loaded. Current desk is %s" desk-current)))
+
 
 (defun desk-unload ()
   "Unload desktop and restart clean."
