@@ -92,3 +92,37 @@
 
   (should (not (file-exists-p "test/ab1"))))
 
+(ert-deftest desk-swap-two-desks-tests ()
+  "Swap between two desks."
+  (desk-unload)
+  (desk-delete-dir "test/ab")
+  (desk-delete-dir "test/cd")
+
+
+  (find-file "test/a.txt")
+  (find-file "b.txt")
+  (desk-save-as-0 "ab")
+  (desk-unload)
+  
+  (should (equal
+           (mapcar 'buffer-name (desk-files-in-buffer-list))
+           nil))
+  
+  (find-file "test/c.txt")
+  (find-file "d.txt")
+  (desk-save-as-0 "cd")
+  (desk-unload)
+
+  (should (equal
+           (mapcar 'buffer-name (desk-files-in-buffer-list))
+           nil))
+
+  (desk-load-0 "test/ab")
+  (should (equal
+           (mapcar 'buffer-name (desk-files-in-buffer-list))
+           '("b.txt" "a.txt")))
+  (desk-load-0 "test/cd")
+  (should (equal
+           (mapcar 'buffer-name (desk-files-in-buffer-list))
+           '("d.txt" "c.txt"))))
+
