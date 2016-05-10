@@ -175,7 +175,7 @@
 (defun desk-new ()
   "Create a new empty desk."
   (interactive)
-  (desk-close-all-files)
+  (desk-unload)
   (call-interactively 'desk-save-as))
 
 
