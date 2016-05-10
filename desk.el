@@ -107,6 +107,7 @@
 
 (defun desk-load-0 (p)
   "Load a desktop in the deskel enviroment."
+  (desk-save)
   (let ((path (expand-file-name p)))
     (desk-env (lambda () 
                 (desk-unload)
@@ -142,6 +143,7 @@
 (defun desk-unload ()
   "Unload desktop and restart clean."
   (interactive)
+  (desk-save)
   (setq desk-current nil)
   (desk-close-all-files)
   (with-temp-message (format "Desk unloaded. Current desk is %s" desk-current)))
