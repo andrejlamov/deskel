@@ -79,7 +79,7 @@
     (funcall body)))
 
 (defun desk-close-all-files ()
-  "Clear all dekstops."
+  "Remove all files desktop."
   (interactive)
   (desk-env (lambda ()
               (desktop-clear))))
