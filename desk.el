@@ -4,7 +4,6 @@
   (if (not (boundp 'desk-current))
       (setq desk-current nil))
   (add-to-list 'after-save-hook 'desk-save)
-  (add-to-list 'window-configuration-change-hook 'desk-save)
   (desk-map-keys)
   (advice-add 'helm-ff-update-when-only-one-matched
             :after

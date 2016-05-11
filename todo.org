@@ -2,9 +2,4 @@
 #+BEGIN_SRC text
 Desktop: 1 frame, 4 buffers restored, 15 failed to restore.
 #+END_SRC
-* Save on hook to aggressive
-#+BEGIN_SRC lisp
-(add-to-list 'window-configuration-change-hook 'desk-save)
-#+END_SRC
 
-Should not react on *helm M-x* buffer.
