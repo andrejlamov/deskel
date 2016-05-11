@@ -138,9 +138,9 @@
   (desk-load-0 "test/ab")
   (should (equal
            (mapcar 'buffer-name (desk-files-in-buffer-list))
-           '("e.txt" "b.txt" "a.txt"))))
-
-(desk-load-0 "test/cd")
+           '("e.txt" "b.txt" "a.txt")))
+  
+  (desk-load-0 "test/cd")
   (should (equal
            (mapcar 'buffer-name (desk-files-in-buffer-list))
-           '("d.txt" "c.txt")))
+           '("d.txt" "c.txt"))))
