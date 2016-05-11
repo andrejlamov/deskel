@@ -107,7 +107,6 @@
 
 (defun desk-load-0 (p)
   "Load a desktop in the deskel enviroment."
-  (desk-save)
   (let ((path (expand-file-name p)))
     (desk-env (lambda () 
                 (desk-unload)
