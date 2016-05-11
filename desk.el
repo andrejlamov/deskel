@@ -131,7 +131,6 @@
 (defun desk-load ()
   "Load desktop from desk-home-dir."
   (interactive)
-  (setq desk-current nil)
   (let ((default-directory desk-home-dir)
         (desk-in-desk-load t))
     (call-interactively 'desk-load-1))
