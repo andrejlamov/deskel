@@ -142,7 +142,7 @@
   (interactive)
   (desk-save)
   (setq desk-current nil)
-  (mapcar 'save-buffer (desk-files-in-buffer-list))
+  (mapcar (lambda (f) (switch-to-buffer f) (save-buffer)) (desk-files-in-buffer-list))
   (desk-close-all-files)
   (with-temp-message (format "Desk unloaded. Current desk is %s" desk-current)))
 
